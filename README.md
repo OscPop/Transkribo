@@ -28,3 +28,9 @@ I've tried several different versions of whisper from the OpenAI GitHub page, bu
 ## Finding the right parameters
 It is difficult to figure out which parameters are the optimal ones since there is no ground-truth to automatically compute the performance of a specific model. The evaluation is currently done by visually inspecting the output in terms of accuracy, spelling, sentence length and coherence.
 
+
+## Future ideas
+There are instances where a teams transcription is not available, for instance when the interview (or any audio file for that matter) was done outside of Teams. In this case whisper will only allow us to get the transcribed speech, and we can't assign speaker labels for the speech segments. To deal with these cases, I tried experimenting a bit with automatic speaker recognition. The speaker recognition just needed to be told how many speakers were present in the audio and it would assign each speech segment with a tag such as "speaker 1". One could then go in afterwards and map the speakers with their real names. The speaker recognition was not that reliable however.
+
+### Sensitive information
+An advantage of being able to use the models locally on your own computer and having a reliable speaker recognition in place, is the possibility of using it to transcribe audio that is considered confidential or sensitive. The audio could be processed and treated in an isolated environment. 
