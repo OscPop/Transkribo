@@ -13,3 +13,10 @@ You will need to have `whisper` installed on your system to run this code. An in
 You will probably also need to have `ffmpeg` installed on your system.
 
 
+### Whisper versions
+I've tried several different versions of whisper from the OpenAI GitHub page, but the later versions did not perform as good as the 20230124 version (at least for the Swedish interviews I tried on). 
+
+
+### Finding the right parameters
+It is difficult to figure out which parameters are the optimal ones since there is no ground-truth to automatically compute the performance of a specific model. The evaluation is currently done by visually inspecting the output in terms of accuracy, spelling, sentence length and coherence.
+
