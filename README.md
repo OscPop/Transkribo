@@ -24,6 +24,9 @@ You will probably also need to have `ffmpeg` installed on your system.
 ### Whisper versions
 I've tried several different versions of whisper from the OpenAI GitHub page, but the later versions did not perform as good as the 20230124 version (at least for the Swedish interviews I tried on). The translation quality might have been more accurate for the later versions, but the sentences were cut short most of the time. 
 
+#### Whisper model
+From empirical tests, I've concluded that the `large-v2` model is the best OpenAI-whisper model for transcribing Swedish audio. It is also the slowest ...
+
 
 ## Finding the right parameters
 It is difficult to figure out which parameters are the optimal ones since there is no ground-truth to automatically compute the performance of a specific model. The evaluation is currently done by visually inspecting the output in terms of accuracy, spelling, sentence length and coherence.
