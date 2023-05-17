@@ -1,2 +1,6 @@
 .env
 .venv
+todo.txt
+ffmpeg.exe
+ffprobe.exe
+/__pycache__/

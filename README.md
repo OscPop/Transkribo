@@ -13,12 +13,14 @@ Most of the work was done on a laptop with XXX.
 The different aspects of the project are presented in various jupyter notebooks for a more interactive walkthrough.
 
 
+
+
 ## Installation
 The libraries used in this project are presented in `requirements.txt`. To install them, navigate to a virtual environment and activate it. Then type `python -m pip install -r requirements.txt` to install all the libraries. 
 <br><br>
 You will need to have `whisper` installed on your system to run this code. An installation guide for whisper is available at: https://github.com/openai/whisper.
 <br><br>
-You will probably also need to have `ffmpeg` installed on your system.
+You will probably also need to have `ffmpeg` installed on your system. You can put the executable (.exe file) inside the root directory, and the code should be able to find and use it. 
 
 
 ### Whisper versions
@@ -37,3 +39,7 @@ There are instances where a teams transcription is not available, for instance w
 
 ### Sensitive information
 An advantage of being able to use the models locally on your own computer and having a reliable speaker recognition in place, is the possibility of using it to transcribe audio that is considered confidential or sensitive. The audio could be processed and treated in an isolated environment. 
+
+
+## Other solutions
+There are other version of whisper out there, and OpenAI even has a whisper API available. If we want to run the code locally and not end up in a cloud somewhere, we can't use their API.
