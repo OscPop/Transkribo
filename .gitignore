@@ -4,3 +4,4 @@ todo.txt
 ffmpeg.exe
 ffprobe.exe
 /__pycache__/
+**/*.mp3
