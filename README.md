@@ -10,7 +10,7 @@ Most of the work was done on a laptop with XXX.
 
 
 ## Files and folders
-The different aspects of the project are presented in various jupyter notebooks for a more interactive walkthrough.
+The different aspects of the project are presented in various jupyter notebooks for a more interactive walkthrough with comments and help along the way.
 
 
 
@@ -23,11 +23,21 @@ You will need to have `whisper` installed on your system to run this code. An in
 You will probably also need to have `ffmpeg` installed on your system. You can put the executable (.exe file) inside the root directory, and the code should be able to find and use it. 
 
 
+
+
+
 ### Whisper versions
 I've tried several different versions of whisper from the OpenAI GitHub page, but the later versions did not perform as good as the 20230124 version (at least for the Swedish interviews I tried on). The translation quality might have been more accurate for the later versions, but the sentences were cut short most of the time. 
 
 #### Whisper model
-From empirical tests, I've concluded that the `large-v2` model is the best OpenAI-whisper model for transcribing Swedish audio. It is also the slowest ...
+From empirical tests, I've concluded that the `large-v2` model is the best OpenAI-whisper model for transcribing Swedish audio. Unfortunately though, it is also the slowest ... 
+<br>
+There are faster solutions out there but for my use case, this seemed like the best at the time. OpenAI even has a whisper API, but if we want to run the code locally and not end up in a cloud somewhere, we can't use their API.
+<br>
+Examples of other solutions:
+1. [Whisper-jax](https://github.com/sanchit-gandhi/whisper-jax)
+2. [OpenAI whisper API](https://platform.openai.com/docs/models/whisper)
+3. [Ggerganov whisper.cpp](https://github.com/ggerganov/whisper.cpp)
 
 
 ## Finding the right parameters
@@ -40,6 +50,3 @@ There are instances where a teams transcription is not available, for instance w
 ### Sensitive information
 An advantage of being able to use the models locally on your own computer and having a reliable speaker recognition in place, is the possibility of using it to transcribe audio that is considered confidential or sensitive. The audio could be processed and treated in an isolated environment. 
 
-
-## Other solutions
-There are other version of whisper out there, and OpenAI even has a whisper API available. If we want to run the code locally and not end up in a cloud somewhere, we can't use their API.
