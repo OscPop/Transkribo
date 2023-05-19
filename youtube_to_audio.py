@@ -10,7 +10,7 @@ def download_from_url(url, preferred_codec):
     ydl.download([url])
     stream = ffmpeg.input('output.m4a')
     #stream = ffmpeg.output(stream, 'output.mp3')
-    stream = ffmpeg.output(stream, f"output.{preferred_codec}")
+    stream = ffmpeg.output(stream, f"audio.{preferred_codec}")
 
 
 if __name__ == "__main__":

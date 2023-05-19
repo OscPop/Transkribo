@@ -8,8 +8,8 @@ import numpy as np
 
 def read_from_docx(folder_path, file_name):
     """
-    Läser in från .docx och gör en .txt-fil av innehållet.
-    Kräver att .docx-filen har rätt format.
+    Reads from .docx and makes a .txt-file of the contents.
+    Requires that the .docx-file has the correct format.
     """
 
     if args.verbosity == 1:
@@ -33,12 +33,14 @@ def read_from_docx(folder_path, file_name):
 
 
 def fix_format(folder_path):
-    # Städar upp i transkriberingen
-    #   - Skickar ut filer i olika format, beroende på vad man vill ha
-    #   - Bygger på att filen följer formatet: 
-    #       1. Tid
-    #       2. Talare
-    #       3. Information
+    """
+    Cleans up the transcription
+        - Sends out files in different formats, depending on what you want
+        - Based on the file following the format:
+            1. Time
+            2. Speaker
+            3. Information
+    """
 
 
     if args.verbosity == 1:
@@ -50,7 +52,7 @@ def fix_format(folder_path):
     with open(os.path.join(folder_path, input_file), "r", encoding="utf-8") as f:
         lines = [line.rstrip() for line in f]
 
-    # Listor för att spara olika information - inte mest minneseffektiva kanske
+    # Lists to hold the different formats
     lines_grupperad = []
     lines_talare_tid = []
     lines_no_timestamps = []
@@ -59,22 +61,22 @@ def fix_format(folder_path):
     lines_tsv_ej_grupperad = []
     unique_speakers = []
 
-    # Hålla koll på vem som pratar och vem som pratade sist
+    # Variables to keep track of the current speaker and the last speaker
     curr_speaker = ""
     last_speaker = ""
     last_milliseconds = 0
     acc_speaker_count = 0
 
-    # Gör en iterator för att använda 'next()'
+    # Make an iterator to iterate over the lines
     iterator = iter(lines)
     for it in iterator:
         
-        # Itererar 3 rader i taget; tid, namn, mening
+        # Get the timestamp, speaker and line from the iterator
         timestamp, curr_speaker, line = it, next(iterator), next(iterator)
         if curr_speaker not in unique_speakers:
             unique_speakers.append(curr_speaker)
 
-        # Gör om tidsstämplar till millisekunder och räkna med dem istället
+        # Get the milliseconds from the timestamp
         hour, minute, second_millisecond = timestamp.split(" --> ")[0].split(":")
         second, millisecond = second_millisecond.split(".")
         milliseconds1 = int(hour) * 3600000 + int(minute) * 60000 + int(second) * 1000 + int(millisecond)
@@ -83,7 +85,7 @@ def fix_format(folder_path):
         milliseconds2 = int(hour) * 3600000 + int(minute) * 60000 + int(second) * 1000 + int(millisecond)
         
 
-        # Om ny talare, skriv ut information om talare och tidsstämpel
+        # If the current speaker is not the same as the last speaker, add the last speaker to the lists
         if curr_speaker != last_speaker:
             lines_grupperad.append(curr_speaker)
             lines_talare_tid.append(timestamp)
@@ -101,12 +103,12 @@ def fix_format(folder_path):
         lines_tsv_grupperad[-1][-1] += f"{line} "
         lines_tsv_ej_grupperad.append([milliseconds1, milliseconds2, curr_speaker, line])
 
-        # Sätter förra talaren till nuvarande talare för nästa iteration
+        # Update the last speaker and the last milliseconds
         last_speaker = curr_speaker
         last_milliseconds = milliseconds2
 
 
-    # Skriv texterna till nya filer
+    # Save the different formats
 
     # Talare grupperad - .txt
     with open(os.path.join(folder_path, "teams_grupperad.txt"), "w", encoding="utf-8") as f:
