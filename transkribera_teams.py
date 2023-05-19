@@ -157,12 +157,13 @@ def write_to_docx(folder_path):
 
     document = docx.Document()
 
-    document.add_heading("Transcription - teams", 0)
+    document.add_heading(f"{folder_path.split('/')[-1]} \nTranskribering - teams", 0)
+    p = document.add_paragraph()
+
     if args.wordcloud:
         document.add_picture(os.path.join(folder_path, "wordcloud.png"), width=docx.shared.Inches(6))
-    document.add_page_break()
+        document.add_page_break()
 
-    p = document.add_paragraph()
 
     for line in text:
         if line in talare:
@@ -177,7 +178,7 @@ def write_to_docx(folder_path):
             #font = run.font
             #font.color.rgb = shared.RGBColor(200, 0, 0)
 
-    file_name = "teams_transkribering_behandlad.docx"
+    file_name = f"{folder_path.split('/')[-1]} Transkribering - teams.docx"
 
     if args.verbosity == 1:
         print(f"Saving file '{file_name}' to folder '{folder_path}'")
