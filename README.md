@@ -5,6 +5,24 @@ This project revolves around using OpenAI's speech-to-text model **Whisper** to 
 By combining whisper with the automatic transcription from Microsoft Teams, we get accurate transcriptions with accurate speaker classification. 
 
 
+## Usage
+The project is organized in various notebooks as that was the most convenient during development of the prototype due to:
+1. Sometimes there was a teams transcription and sometimes there was not
+2. The audio files could have a variety of formats
+3. There was different degrees of delay between the timestamps in the teams transcription and the actual speech that needed to be accounted for
+<br>
+There is a file `youtube_to_audio.py` that can be used to get the audio of a YouTube video given the URL. This is convenient for trying out the transcriptions of whisper. 
+
+### Navigating the notebooks
+Depending on the input audio/video file, you may need to convert it to another format. Some examples of this is provided in "convert_file_formats".
+
+The main magic happens in the "transcribe_audio" notebook, where the speech is converted into text and saved into the preferred format. 
+
+If there is a teams transcription saved in a docx format, we can read it and convert it to txt format using the "read_from_docx" notebook.
+
+Trying out the models on just a section of the input audio is made easy by using the notebook "make_audio_slice", which lets the user define a slice of the input audio in various ways.
+
+
 ## Languages
 The model is not limited to the Swedish language. The following graphic is taken from the official [OpenAI whisper](https://github.com/openai/whisper) repository. It shows the WER-score (word error rate) on the [Fleurs](https://huggingface.co/datasets/google/fleurs) dataset using the largest whisper model, `large-v2`. The smaller the WER score, the better.
 <img src="Images/openai-whisper-language-breakdown.svg">
